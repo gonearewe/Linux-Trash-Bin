@@ -62,12 +62,14 @@ func main() {
 			fmt.Println("Please Check : " + trash_name)
 			return
 		}
+	}else{
+		usage()
 	}
-
+	return
 }
 func usage() {
 	fmt.Fprintf(os.Stderr, `del version: 1.0
-Usage: del [-hlc] [-d trash name] [-c ]
+Usage: del [-hlc] [-d trash name] [-ll ]
 
 Options:
 `)
@@ -97,6 +99,8 @@ func listTrashBin(isDetail bool) {
 		fmt.Println("TrashBin Doesn't Exist")
 	} else {
 		var cmd *exec.Cmd //instead of exec.*Cmd or just *Cmd
+		fmt.Println("A List for Your Trash Bin")
+		fmt.Println(conf.Trash_bin_path+"/TrashBin"+" :")
 		if isDetail {
 			cmd = exec.Command("ls", "-l", conf.Trash_bin_path+"/TrashBin") //you can't define "cmd" here,or
 		} else {
